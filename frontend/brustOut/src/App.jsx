@@ -17,10 +17,10 @@ export default function HeroSection() {
             </div>
             <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-4">
               <button className="bg-[#5048e5] text-white px-6 py-3 rounded-xl hover:opacity-90 transition">
-                + Start Talking Now +{" "}
+                Start Talking Now
               </button>
               <button className="border border-[#91c3fd] text-[#91c3fd] px-6 py-3 rounded-xl hover:bg-[#91c3fd] hover:text-[#020517] transition">
-                + Learn More &rarr; +{" "}
+                Learn More &rarr;
               </button>
             </div>
           </div>
@@ -28,7 +28,7 @@ export default function HeroSection() {
             <p className="text-5xl font-bold text-[#91c3fd]">How it works?</p>
             <div className="flex flex-col lg:flex-row items-center justify-around gap-8 px-4 py-10">
               {/* Step 1 */}
-              <div className="card w-72 bg-[#0f1729] text-white shadow-md hover:shadow-xl transition duration-300">
+              <div className="card w-72 bg-base-100 hover:bg-[#0f1729] hover:scale-102 hover:text-white shadow-md hover:shadow-xl transition duration-300">
                 <div className="card-body items-center text-center">
                   <span className="badge badge-primary badge-lg">Step 1</span>
                   <h2 className="card-title text-xl text-[#91c3fd font-bold mt-2">
@@ -42,7 +42,7 @@ export default function HeroSection() {
               </div>
 
               {/* Step 2 */}
-              <div className="card w-72 bg-base-100 shadow-md hover:shadow-xl transition duration-300">
+              <div className="card w-72 hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-base-100 shadow-md hover:shadow-xl transition duration-300">
                 <div className="card-body items-center text-center">
                   <span className="badge badge-secondary badge-lg">Step 2</span>
                   <h2 className="card-title text-xl font-bold mt-2">
@@ -56,7 +56,7 @@ export default function HeroSection() {
               </div>
 
               {/* Step 3 */}
-              <div className="card w-72 bg-base-100 shadow-md hover:shadow-xl transition duration-300">
+              <div className="card w-72 hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-base-100 shadow-md hover:shadow-xl transition duration-300">
                 <div className="card-body items-center text-center">
                   <span className="badge badge-accent badge-lg">Step 3</span>
                   <h2 className="card-title text-xl font-bold mt-2">
@@ -70,7 +70,7 @@ export default function HeroSection() {
               </div>
 
               {/* Step 4 */}
-              <div className="card w-72 bg-base-100 shadow-md hover:shadow-xl transition duration-300">
+              <div className="card w-72 hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-base-100 shadow-md hover:shadow-xl transition duration-300">
                 <div className="card-body items-center text-center">
                   <span className="badge badge-success badge-lg">Step 4</span>
                   <h2 className="card-title text-xl font-bold mt-2">
