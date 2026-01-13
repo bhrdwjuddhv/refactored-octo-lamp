@@ -96,7 +96,7 @@ server.post("/user/signup", async (req, res) => {
 
   const existing = await User.findOne({ username });
   if(existing){
-    return res.status(403).json({ error: "Username already taen" });
+    return res.status(403).json({ error: "Username already taken" });
   }
 
   bcrypt.hash(password, 10, async (err, hashed_password) => {
@@ -120,9 +120,6 @@ server.post("/user/signup", async (req, res) => {
       });
     })
     .catch(err => {
-      if(err.code === 11000){
-        return res.status(403).json({ error: "Username already exists" });
-      }
       return res.status(500).json({ error: err.message });
     });
 

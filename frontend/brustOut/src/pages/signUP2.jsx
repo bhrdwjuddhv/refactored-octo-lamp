@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const API = import.meta.env.VITE_SERVER_DOMAIN;
+console.log(API);
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState({
@@ -43,6 +44,7 @@ export default function SignUpPage() {
   e.preventDefault();
 
   try {
+    console.log("try");
     await axios.post(`${API}/user/signup`, {
       username: formData.username,
       password: formData.password
@@ -55,7 +57,7 @@ export default function SignUpPage() {
       password: ""
     });
 
-    generateUsername();
+    // generateUsername();
     
   } catch (err) {
     console.error(err);
