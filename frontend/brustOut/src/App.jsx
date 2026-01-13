@@ -7,7 +7,7 @@ import AboutUs from "./pages/aboutUs.jsx";
 import LoginPage from "./pages/loginPage.jsx";
 
 import SignUp from "./pages/signUP2";
->>>>>>> Stashed changes
+
 import HeroPage from "./pages/heroPage.jsx";
 import ListenerOnboarding from "./pages/ListenerOnboarding.jsx";
 import ListenerProfile from "./pages/ListenerProfile";
@@ -15,7 +15,7 @@ import UserToListener from "./pages/UserToListener";
 import Premium from "./pages/Premium";
 import FeedbackPage from "./pages/FeedbackPage";
 import EmoMateDashboard from "./pages/EmoMateDashboard";
-import UserHomePage from "./pages/userHomePage";
+import UserDashboard from "./pages/UserDashboard";
 
 function Home() {
   return <HeroPage />;
@@ -34,7 +34,7 @@ export default function App() {
         <Route path="/listener/:id" element={<UserToListener />} />
         <Route path="/premium" element={<Premium />} />
         <Route path="/feedback" element={<FeedbackPage />} />
-        <Route path="/user-home" element={<UserHomePage />} />
+        <Route path="/dashboard/user" element={<UserDashboard />} />
       </Route>
 
       <Route element={<DashboardLayout />}>
