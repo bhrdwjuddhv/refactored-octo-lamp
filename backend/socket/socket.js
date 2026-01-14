@@ -9,7 +9,8 @@ const initSocket = (io) => {
     });
     // Chat message
     socket.on("send-message", ({ roomId, message, name }) => {
-        console.log(roomId,message,name);
+      // socket.join(roomId);
+      console.log(roomId, message, name);
       io.to(roomId).emit("receive-message", { message, name });
     });
 
