@@ -15,7 +15,7 @@ import Premium from "./pages/Premium";
 import FeedbackPage from "./pages/FeedbackPage";
 import EmoMateDashboard from "./pages/EmoMateDashboard";
 import UserHomePage from "./pages/UserDashboard";
-import Room from "./socket/Room.jsx";
+
 function Home() {
   return <HeroPage />;
 }
@@ -34,12 +34,13 @@ export default function App() {
         <Route path="/premium" element={<Premium />} />
         <Route path="/feedback" element={<FeedbackPage />} />
         <Route path="/user-home" element={<UserHomePage />} />
-        <Route path="/room/:roomId" element={<Room />} />
       </Route>
 
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<EmoMateDashboard />} />
       </Route>
+      <Route path="/privacy" element={<PrivacyPage />} />
+      <Route path="/terms" element={<TermsAndConditions />} />
     </Routes>
   );
 }
