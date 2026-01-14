@@ -3,11 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const API = import.meta.env.VITE_SERVER_DOMAIN;
 
-    const navigate = useNavigate();
-    const API = import.meta.env.VITE_SERVER_DOMAIN;
-
-    const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
@@ -15,23 +14,29 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async () => {
-  try {
-    const res = await axios.post(`${API}/user/login`, {
-      username: formData.username,
-      password: formData.password,
-    });
+    if (!formData.username || !formData.password) {
+      alert("All fields are required");
+      return;
+    }
 
-    // store user
-    localStorage.setItem("username", res.data.username);
+    try {
+      const res = await axios.post(`${API}/user/login`, {
+        username: formData.username,
+        password: formData.password,
+      });
 
-    // REDIRECT TO DASHBOARD
-    navigate("/dashboard");
+      // ✅ STORE USER (same key used everywhere)
+      localStorage.setItem("emomate_user", res.data.username);
 
-  } catch (err) {
-    alert(err.response?.data?.error || "Login failed");
-  }
-};
+      // ✅ NOTIFY HEADER TO UPDATE UI
+      window.dispatchEvent(new Event("auth-change"));
 
+      // ✅ REDIRECT TO USER DASHBOARD
+      navigate("/user-home");
+    } catch (err) {
+      alert(err.response?.data?.error || "Login failed");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#020517] flex items-center justify-center px-4">
@@ -75,7 +80,7 @@ export default function Login() {
             onChange={(e) =>
               setFormData({ ...formData, username: e.target.value })
             }
-            placeholder="e.g. silentmoon421"
+            placeholder="e.g. SilentMoon421"
             className="
               w-full mb-6
               px-4 py-3
@@ -138,13 +143,11 @@ export default function Login() {
             type="button"
             onClick={handleLogin}
             className="
-                emomate-primary-btn
-                w-full h-11
-                rounded-xl
-                bg-[#3e36de]
-                text-white font-medium
-                hover:bg-[#4338ca]
-                transition-colors duration-200
+              emomate-primary-btn
+              w-full h-11
+              rounded-xl
+              text-white font-medium
+              transition
             "
           >
             Enter anonymously
@@ -159,7 +162,7 @@ export default function Login() {
           </p>
         </div>
 
-        {/* IMAGE (unchanged) */}
+        {/* IMAGE */}
         <img
           src="https://www.inetsoft.com/images/screenshots/gallery/census.PNG"
           alt="dashboard"

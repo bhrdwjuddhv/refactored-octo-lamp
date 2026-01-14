@@ -6,8 +6,24 @@ import {
   Clock,
 } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const UserDashboard = () => {
+  const navigate = useNavigate();
+
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("emomate_user");
+
+    if (!storedUser) {
+      navigate("/login");
+    } else {
+      setUsername(storedUser);
+    }
+  }, [navigate]);
+
   const pieData = [
     { name: "Completed", value: 6, color: "#22c55e" },
     { name: "Ongoing", value: 2, color: "#3b82f6" },
@@ -15,18 +31,9 @@ const UserDashboard = () => {
   ];
 
   const listeners = [
-    {
-      name: "Aarav",
-      avatar: "https://i.pravatar.cc/150?img=12",
-    },
-    {
-      name: "Meera",
-      avatar: "https://i.pravatar.cc/150?img=32",
-    },
-    {
-      name: "Kabir",
-      avatar: "https://i.pravatar.cc/150?img=45",
-    },
+    { name: "Aarav", avatar: "https://i.pravatar.cc/150?img=12" },
+    { name: "Meera", avatar: "https://i.pravatar.cc/150?img=32" },
+    { name: "Kabir", avatar: "https://i.pravatar.cc/150?img=45" },
   ];
 
   return (
@@ -39,7 +46,7 @@ const UserDashboard = () => {
               src="/icon2.png"
               alt="EmoMate"
               className="w-full h-full object-cover cursor-pointer"
-              onClick={() => (window.location.href = "/")}
+              onClick={() => navigate("/")}
             />
           </div>
           <span className="text-xl font-bold text-white">My Dashboard</span>
@@ -54,10 +61,10 @@ const UserDashboard = () => {
         </div>
 
         <div className="flex items-center gap-3 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-full">
-          <div className="w-8 h-8 rounded-full overflow-hidden">
-            <img src="/user-avatar.webp" alt="User" />
+          <div className="w-8 h-8 rounded-full overflow-hidden bg-indigo-600 flex items-center justify-center text-white text-sm font-semibold">
+            {username?.charAt(0).toUpperCase()}
           </div>
-          <span className="text-sm">You</span>
+          <span className="text-sm">{username}</span>
           <ChevronDown className="w-4 h-4 text-slate-400" />
         </div>
       </nav>
@@ -87,13 +94,8 @@ const UserDashboard = () => {
                     transition
                   "
                 >
-                  {/* Avatar */}
                   <div className="w-14 h-14 mx-auto mb-3 rounded-full overflow-hidden ring-2 ring-indigo-500/40">
-                    <img
-                      src={l.avatar}
-                      alt={l.name}
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={l.avatar} alt={l.name} />
                   </div>
 
                   <p className="text-sm font-semibold text-white">{l.name}</p>
@@ -102,16 +104,14 @@ const UserDashboard = () => {
                   </p>
 
                   <button
-                    onClick={() => (window.location.href = "/chat")}
+                    onClick={() => navigate("/chat")}
                     className="
                       w-full
                       bg-indigo-600
                       hover:bg-indigo-500
-                      px-4
-                      py-2
+                      px-4 py-2
                       rounded-xl
-                      text-xs
-                      font-semibold
+                      text-xs font-semibold
                       transition
                       active:scale-95
                     "
@@ -166,39 +166,11 @@ const UserDashboard = () => {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-
-            <div className="flex justify-center gap-4 mt-4 text-xs">
-              {pieData.map((item) => (
-                <div key={item.name} className="flex items-center gap-2">
-                  <span
-                    className="w-2.5 h-2.5 rounded-full"
-                    style={{ backgroundColor: item.color }}
-                  />
-                  {item.name}
-                </div>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 mt-6">
-              <Stat label="Sessions taken" value="9" />
-              <Stat label="Listeners met" value="5" />
-              <Stat label="Active chats" value="1" />
-              <Stat label="Avg rating" value="4.9 ⭐" />
-            </div>
           </div>
         </aside>
       </div>
     </div>
   );
 };
-
-const Stat = ({ label, value }) => (
-  <div className="bg-slate-900 border border-slate-800 p-4 rounded-2xl">
-    <p className="text-[10px] uppercase text-slate-500 font-bold tracking-wide">
-      {label}
-    </p>
-    <p className="text-xl font-bold text-white mt-1">{value}</p>
-  </div>
-);
 
 export default UserDashboard;
