@@ -13,6 +13,10 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
+server.get("/", (req, res) => {
+  res.send("EmoMate Backend is Live 🚀");
+});
+
 import User from "../schema/User.schema.js";
 import Listener from '../schema/Listener.schema.js';
 
