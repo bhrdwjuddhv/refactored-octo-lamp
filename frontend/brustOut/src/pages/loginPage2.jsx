@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();
-  const API = import.meta.env.VITE_SERVER_DOMAIN;
+  const API = import.meta.env.VITE_API_URL;
 
   const [formData, setFormData] = useState({
     username: "",
@@ -25,13 +25,13 @@ export default function Login() {
         password: formData.password,
       });
 
-      // ✅ STORE USER (same key used everywhere)
+      //STORE USER (same key used everywhere)
       localStorage.setItem("emomate_user", res.data.username);
 
-      // ✅ NOTIFY HEADER TO UPDATE UI
+      //NOTIFY HEADER TO UPDATE UI
       window.dispatchEvent(new Event("auth-change"));
 
-      // ✅ REDIRECT TO USER DASHBOARD
+      // REDIRECT TO USER DASHBOARD
       navigate("/user-home");
     } catch (err) {
       alert(err.response?.data?.error || "Login failed");
