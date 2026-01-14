@@ -8,12 +8,12 @@ import dotenv from "dotenv";
 dotenv.config();
 console.log(process.env.DB_URL)
 
-const server = express();
+const app = express();
 
-server.use(cors());
-server.use(express.json());
+app.use(cors());
+app.use(express.json());
 
-server.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("EmoMate Backend is Live 🚀");
 });
 
@@ -37,7 +37,7 @@ const connectDB = async () => {
 connectDB();
 
 // Username-Generator.....
-server.get("/user/generate-username", async (req, res) => {
+app.get("/user/generate-username", async (req, res) => {
 
   const adjectives = [
     "Silent","Calm","Gentle","Brave","Kind",
@@ -67,7 +67,7 @@ server.get("/user/generate-username", async (req, res) => {
 
 
 // Check - Username....
-server.get("/user/check-username", async (req, res) => {
+app.get("/user/check-username", async (req, res) => {
 
   const { username } = req.query;
 
@@ -85,7 +85,7 @@ server.get("/user/check-username", async (req, res) => {
 
 
 // User Sign-up...
-server.post("/user/signup", async (req, res) => {
+app.post("/user/signup", async (req, res) => {
 
   let { username, password } = req.body;
   username = username.toLowerCase();
@@ -133,7 +133,7 @@ server.post("/user/signup", async (req, res) => {
 
 
 // user Login......
-server.post("/user/login", async (req, res) => {
+app.post("/user/login", async (req, res) => {
 
   let { username, password } = req.body;
 
@@ -166,7 +166,7 @@ server.post("/user/login", async (req, res) => {
 });
 
 // Listener Signup....
-server.post("/listener/signup", async (req, res) => {
+app.post("/listener/signup", async (req, res) => {
 
   let { fullname, email, password, bio } = req.body;
 
@@ -211,4 +211,4 @@ server.post("/listener/signup", async (req, res) => {
 });
 
 
-export default server;
+export default app;
