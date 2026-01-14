@@ -10,6 +10,7 @@ export default function SignUpPage() {
     username: "",
     password: "",
   });
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const [available, setAvailable] = useState(null);
   const [checking, setChecking] = useState(false);
@@ -41,29 +42,28 @@ export default function SignUpPage() {
 
   // handle Submit Form
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    console.log("try");
-    await axios.post(`${API}/user/signup`, {
-      username: formData.username,
-      password: formData.password
-    });
+    try {
+      console.log("try");
+      await axios.post(`${API}/user/signup`, {
+        username: formData.username,
+        password: formData.password,
+      });
 
-    alert("Signed up successfully");
+      alert("Signed up successfully");
 
-    setFormData({
-      username: "",
-      password: ""
-    });
+      setFormData({
+        username: "",
+        password: "",
+      });
 
-    // generateUsername();
-    
-  } catch (err) {
-    console.error(err);
-    alert(err.response?.data?.error || "Signup failed");
-  }
-};
+      // generateUsername();
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.error || "Signup failed");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-[#020517] via-[#020517] to-[#0f1729] px-4">
@@ -147,7 +147,7 @@ export default function SignUpPage() {
                 name="password"
                 value={formData.password}
                 onChange={(e) =>
-                    setFormData({ ...formData, password: e.target.value })
+                  setFormData({ ...formData, password: e.target.value })
                 }
                 placeholder="Only you will know this"
                 className="
@@ -180,17 +180,43 @@ export default function SignUpPage() {
               </button>
             </div>
             {/* CTA */}
-            <button
-              type="submit"
-              className="
-                    emomate-primary-btn
-                    w-full h-11 mt-6
-                    rounded-xl
-                    text-white text-sm font-medium
-                "
-            >
-              Enter anonymously
-            </button>
+            {/* Terms & Conditions */}
+            <div className="mt-4 flex items-start gap-2 text-xs text-[#91c3fd]/70">
+              <input
+                type="checkbox"
+                id="terms"
+                checked={acceptedTerms}
+                onChange={(e) => setAcceptedTerms(e.target.checked)}
+                className="mt-1 accent-[#5048e5]"
+              />
+
+              <label htmlFor="terms" className="leading-snug">
+                I agree to the{" "}
+                <Link
+                  to="/terms"
+                  target="_blank"
+                  className="text-[#91c3fd] underline hover:text-white"
+                >
+                  Terms & Conditions
+                </Link>{" "}
+                of EmoMate and understand this is not a medical service.
+              </label>
+            </div>
+
+           <button
+  type="submit"
+  disabled={!acceptedTerms}
+  className="
+    emomate-primary-btn
+    w-full h-11 mt-6
+    rounded-xl
+    text-white text-sm font-medium
+    disabled:opacity-50 disabled:cursor-not-allowed
+  "
+>
+  Enter anonymously
+</button>
+
           </form>
 
           {/* Footer */}

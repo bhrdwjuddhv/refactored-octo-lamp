@@ -3,9 +3,9 @@ export default function Footer() {
   return (
     <footer className="footer sm:footer-horizontal bg-[#0f1729] text-white p-10">
       <aside>
-        <img src="/android-chrome-512.png" alt="favicon-48.png"
-
-
+        <img
+          src="/android-chrome-512.png"
+          alt="favicon-48.png"
           className="fill-[#91c3fd] size-30"
         />
 
@@ -57,12 +57,11 @@ export default function Footer() {
 
       <nav>
         <h6 className="footer-title text-[#91c3fd]">Legal</h6>
-        <a className="link link-hover text-white/70 hover:text-[#91c3fd]">
-          Terms and condition
-        </a>
-
+        <Link to="/terms" className="text-sm text-gray-400 hover:text-primary">
+          Terms & Conditions
+        </Link>
         <Link
-          to="/chat"
+          to="/privacy"
           className="link link-hover text-white/70 hover:text-[#91c3fd]"
         >
           Privacy Policy

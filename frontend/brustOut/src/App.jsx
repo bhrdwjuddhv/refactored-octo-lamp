@@ -14,7 +14,10 @@ import UserToListener from "./pages/UserToListener";
 import Premium from "./pages/Premium";
 import FeedbackPage from "./pages/FeedbackPage";
 import EmoMateDashboard from "./pages/EmoMateDashboard";
-import UserHomePage from "./pages/UserDashboard";
+import UserDashboard from "./pages/UserDashboard";
+import TermsAndConditions from "./pages/TermsAndConditions";
+
+import PrivacyPage from "./pages/PrivacyPage";
 
 function Home() {
   return <HeroPage />;
@@ -33,12 +36,14 @@ export default function App() {
         <Route path="/listener/:id" element={<UserToListener />} />
         <Route path="/premium" element={<Premium />} />
         <Route path="/feedback" element={<FeedbackPage />} />
-        <Route path="/user-home" element={<UserHomePage />} />
+        <Route path="/dashboard/user" element={<UserDashboard />} />
       </Route>
 
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<EmoMateDashboard />} />
       </Route>
+      <Route path="/privacy" element={<PrivacyPage />} />
+      <Route path="/terms" element={<TermsAndConditions />} />
     </Routes>
   );
 }
