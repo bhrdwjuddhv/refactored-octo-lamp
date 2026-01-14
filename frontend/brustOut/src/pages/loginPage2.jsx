@@ -164,7 +164,7 @@ export default function Login() {
 
         {/* IMAGE */}
         <img
-          src="/userDashboard.png"
+          src="https://www.inetsoft.com/images/screenshots/gallery/census.PNG"
           alt="dashboard"
           className="
             hidden lg:block
