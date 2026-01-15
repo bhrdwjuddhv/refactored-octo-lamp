@@ -168,8 +168,8 @@ export default function Login() {
           alt="dashboard"
           className="
             hidden lg:block
-            h-105
-            w-auto
+            h-auto
+            w-175
             transition-transform duration-700 ease-out
             transform-gpu
             rotate-x-12 rotate-y-12
