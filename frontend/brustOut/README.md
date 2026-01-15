@@ -2,7 +2,7 @@
 
 EmoMate is a safe, anonymous, and judgment-free emotional support platform designed to help people feel heard, understood, and less alone. It focuses on real conversations with empathetic listeners who understand emotional struggles through lived experience.
 
-🌐 **Live Website:** _Coming soon_
+🌐 **Live Website:** _https://emomate.vercel.app/
 
 ---
 

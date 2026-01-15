@@ -44,7 +44,7 @@ export default function Footer() {
         >
           About Us
         </Link>
-        <a className="link link-hover text-white/70 hover:text-[#91c3fd]">
+        <a href="mailto:emomate9@gmail.com" className="link link-hover text-white/70 hover:text-[#91c3fd]">
           Contact
         </a>
         <Link
