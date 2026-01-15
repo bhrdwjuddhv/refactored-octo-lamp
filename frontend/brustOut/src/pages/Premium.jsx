@@ -52,6 +52,9 @@ export default function Premium() {
                                     Get Started
                                 </button>
                             </div>
+                            <p className="mt-3 text-center text-xs text-white/50 italic">
+                                🚧 Features rolling out soon. You’ll be notified first.
+                            </p>
 
                         </div>
                     </div>
@@ -87,6 +90,9 @@ export default function Premium() {
                                     Subscribe
                                 </button>
                             </div>
+                            <p className="mt-3 text-center text-xs text-white/50 italic">
+                                🚧 Features rolling out soon. You’ll be notified first.
+                            </p>
 
                         </div>
                     </div>
