@@ -18,6 +18,7 @@ import UserHomePage from "./pages/UserDashboard";
 import PrivacyPage from "./pages/PrivacyPage.jsx";
 import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 import Room from "./socket/Room.jsx";
+import ChatPage from "./pages/ChatPage.jsx";
 
 function Home() {
   return <HeroPage />;
@@ -37,7 +38,9 @@ export default function App() {
         <Route path="/premium" element={<Premium />} />
         <Route path="/feedback" element={<FeedbackPage />} />
         <Route path="/user-home" element={<UserHomePage />} />
-        <Route path="/room/:roomId" element={<Room />} />
+        {/* <Route path="/room/:roomId" element={<Room />} /> */}
+        <Route path="/room/:roomId" element={<ChatPage />} />
+
       </Route>
 
       <Route element={<DashboardLayout />}>

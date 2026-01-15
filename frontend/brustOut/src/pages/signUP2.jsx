@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_SERVER_DOMAIN;
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState({
@@ -17,10 +17,13 @@ export default function SignUpPage() {
 
   const navigate = useNavigate();
 
-
   const generateUsername = async () => {
     const res = await axios.get(`${API}/user/generate-username`);
-    setFormData((p) => ({ ...p, username: res.data.username }));
+    console.log(res);
+    setFormData((p) => ({
+      ...p,
+      username: res?.data?.username || "",
+    }));
   };
 
   useEffect(() => {
@@ -28,30 +31,29 @@ export default function SignUpPage() {
   }, []);
 
   useEffect(() => {
-  if (!formData.username || formData.username.length < 3) {
-    setAvailable(null);
-    setChecking(false);
-    return;
-  }
-
-  setChecking(true);
-
-  const t = setTimeout(async () => {
-    try {
-      const res = await axios.get(
-        `${API}/user/check-username?username=${formData.username}`
-      );
-      setAvailable(res.data.available);
-    } catch {
+    if (!formData.username || formData.username.length < 3) {
       setAvailable(null);
-    } finally {
       setChecking(false);
+      return;
     }
-  }, 500);
 
-  return () => clearTimeout(t);
-}, [formData.username]);
+    setChecking(true);
 
+    const t = setTimeout(async () => {
+      try {
+        const res = await axios.get(
+          `${API}/user/check-username?username=${formData.username}`
+        );
+        setAvailable(res.data.available);
+      } catch {
+        setAvailable(null);
+      } finally {
+        setChecking(false);
+      }
+    }, 500);
+
+    return () => clearTimeout(t);
+  }, [formData.username]);
 
   // handle Submit Form
   const handleSubmit = async (e) => {
@@ -69,7 +71,6 @@ export default function SignUpPage() {
       window.dispatchEvent(new Event("auth-change"));
 
       navigate("/user-home");
-
 
       setFormData({
         username: "",
@@ -145,21 +146,21 @@ export default function SignUpPage() {
             </div>
 
             <div className="text-xs mt-2 h-4">
-                {formData.username.length > 0 && formData.username.length < 3 && (
-                  <span className="text-yellow-400">Minimum 3 characters</span>
-                )}
+              {formData.username.length > 0 && formData.username.length < 3 && (
+                <span className="text-yellow-400">Minimum 3 characters</span>
+              )}
 
-                {formData.username.length >= 3 && checking && (
-                  <span className="text-[#91c3fd]/50">Checking…</span>
-                )}
+              {formData.username.length >= 3 && checking && (
+                <span className="text-[#91c3fd]/50">Checking…</span>
+              )}
 
-                {formData.username.length >= 3 && available === true && (
-                  <span className="text-green-400">Available</span>
-                )}
+              {formData.username.length >= 3 && available === true && (
+                <span className="text-green-400">Available</span>
+              )}
 
-                {formData.username.length >= 3 && available === false && (
-                  <span className="text-red-400">Taken</span>
-                )}
+              {formData.username.length >= 3 && available === false && (
+                <span className="text-red-400">Taken</span>
+              )}
             </div>
 
             {/* Password */}
@@ -229,20 +230,19 @@ export default function SignUpPage() {
               </label>
             </div>
 
-           <button
-  type="submit"
-  disabled={!acceptedTerms || available === false}
-  className="
+            <button
+              type="submit"
+              disabled={!acceptedTerms || available === false}
+              className="
     emomate-primary-btn
     w-full h-11 mt-6
     rounded-xl
     text-white text-sm font-medium
     disabled:opacity-50 disabled:cursor-not-allowed
   "
->
-  Enter anonymously
-</button>
-
+            >
+              Enter anonymously
+            </button>
           </form>
 
           {/* Footer */}
