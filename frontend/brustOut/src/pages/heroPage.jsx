@@ -6,11 +6,11 @@ export default function HeroPage() {
     <>
       <div className="w-full overflow-x-hidden">
         <div className="flex flex-col gap-15">
-          <div className="flex flex-col items-center justify-center w-full gap-10 m-10">
-            <div className="h-full text-center text-4xl lg:text-6xl px-10 text-[#91c3fd] font-bold">
+          <div className="flex flex-col items-center justify-center w-full gap-8 px-4 py-10 sm:px-6 lg:px-10">
+            <div className="text-center text-3xl sm:text-4xl lg:text-6xl px-2 sm:px-6 text-[#91c3fd] font-bold leading-tight">
               You don't have to face it alone
             </div>
-            <div className="text-center text-white/70">
+            <div className="text-center text-white/70 max-w-xl text-sm sm:text-base px-2">
               Connect with empathetic mentors anonymously. Share your feelings
               in a safe, judgment-free space whenever you need support.
             </div>
@@ -27,10 +27,10 @@ export default function HeroPage() {
             </div>
           </div>
           <div className="flex flex-col items-center justify-center w-full gap-4">
-            <p className="text-5xl font-bold text-[#91c3fd]">How it works?</p>
-            <div className="flex flex-col lg:flex-row items-center justify-around gap-8 px-4 py-10">
+            <p className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#91c3fd] text-center">How it works?</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 py-10">
               <div
-                className="card w-72 min-h-57.5
+                className="card w-full min-h-230px
  bg-[#1c2229] hover:bg-[#0f1729] hover:scale-102 hover:text-white shadow-md hover:shadow-xl transition duration-300"
               >
                 <div className="card-body items-center text-center">
@@ -46,7 +46,7 @@ export default function HeroPage() {
               </div>
 
               <div
-                className="card w-72 min-h-57.5
+                className="card w-full min-h-230px
  hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover:shadow-xl transition duration-300"
               >
                 <div className="card-body items-center text-center">
@@ -62,7 +62,7 @@ export default function HeroPage() {
               </div>
 
               <div
-                className="card w-72  min-h-57.5
+                className="card w-full min-h-230px
 hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover:shadow-xl transition duration-300"
               >
                 <div className="card-body items-center text-center">
@@ -78,7 +78,7 @@ hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover
               </div>
 
               <div
-                className="card w-72 min-h-57.5
+                className="card w-full min-h-230px
  hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover:shadow-xl transition duration-300"
               >
                 <div className="card-body items-center text-center">
@@ -99,8 +99,8 @@ hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover
         <div className="flex flex-col items-center justify-center w-full gap-4">
           <p className="text-5xl font-bold">Why choose Us?</p>
 
-          <div className="flex flex-col gap-6 items-center lg:grid lg:grid-cols-3 lg:gap-8 px-6 py-12">
-            <div className="card w-96 bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-12">
+            <div className="card w-full max-w-md mx-auto bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
               <div className="card-body gap-4">
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-base-200">
                   <svg
@@ -123,7 +123,7 @@ hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover
               </div>
             </div>
 
-            <div className="card w-96 bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
+            <div className="card w-full max-w-md mx-auto bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
               <div className="card-body gap-4">
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-base-200">
                   <svg
@@ -143,7 +143,7 @@ hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover
               </div>
             </div>
 
-            <div className="card w-96 bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
+            <div className="card w-full max-w-md mx-auto bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
               <div className="card-body gap-4">
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-base-200">
                   <svg
@@ -168,7 +168,7 @@ hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover
               </div>
             </div>
 
-            <div className="card w-96 bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
+            <div className="card w-full max-w-md mx-auto bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
               <div className="card-body gap-4">
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-base-200">
                   <svg
@@ -189,7 +189,7 @@ hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover
               </div>
             </div>
 
-            <div className="card w-96 bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
+            <div className="card w-full max-w-md mx-auto bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
               <div className="card-body gap-4">
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-base-200">
                   <svg
@@ -211,7 +211,7 @@ hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover
               </div>
             </div>
 
-            <div className="card w-96 bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
+            <div className="card w-full max-w-md mx-auto bg-base-100 shadow-md rounded-2xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
               <div className="card-body gap-4">
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-base-200">
                   {/* Heart Icon */}
@@ -241,7 +241,7 @@ hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover
           </div>
           <section className="px-6 py-20">
             <div className="text-center max-w-3xl mx-auto mb-14">
-              <h2 className="text-4xl font-bold text-base-content mb-4">
+              <h2 className="text-3xl sm:text-4xl font-bold text-base-content mb-4">
                 Built with safety in mind
               </h2>
               <p className="text-base-content/70 text-lg">
@@ -371,7 +371,7 @@ hover:bg-[#0f1729] hover:scale-102 hover:text-white bg-[#1c2229] shadow-md hover
           </section>
           <section className="px-6 py-24 bg-[#020517] text-white">
             <div className="text-center max-w-3xl mx-auto mb-14">
-              <h2 className="text-4xl lg:text-5xl font-bold text-[#91c3fd] mb-4">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#91c3fd] mb-4">
                 Frequently Asked Questions
               </h2>
               <p className="text-white/70 text-lg">
