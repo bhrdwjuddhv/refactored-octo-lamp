@@ -1,6 +1,4 @@
-import { listener } from "../../data/dummyChat";
-
-export default function ChatHeader() {
+export default function ChatHeader({listener}) {
   return (
     <div className="flex items-center justify-between px-6 py-4 border-b border-gray-700 bg-[#020517]">
       <div>

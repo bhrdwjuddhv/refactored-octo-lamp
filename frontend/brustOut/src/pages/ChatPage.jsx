@@ -5,17 +5,20 @@ import { useParams, useLocation } from "react-router-dom";
 import ChatHeader from "../components/chat/ChatHeader";
 import MessageBubble from "../components/chat/MessageBubble";
 import ChatInput from "../components/chat/ChatInput";
-import { listener } from "../data/dummyChat";
+// import { listener } from "../data/dummyChat";
 
 let peer;
 
 export default function ChatRoomPage() {
   const { roomId } = useParams();
   const name = new URLSearchParams(useLocation().search).get("name");
-
+  let role = "user";
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-
+  let headerProps = {
+    name,
+    role,
+  };
   const bottomRef = useRef(null);
 
   // 🔌 Socket.IO + WebRTC
@@ -24,9 +27,17 @@ export default function ChatRoomPage() {
 
     // Receiving chat messages
     socket.on("receive-message", (data) => {
-      setMessages((prev) => [...prev, { sender: data.name, text: data.message, id: Date.now() }]);
+      if (data.name === name) return;
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: data.name,
+          text: data.message,
+          id: Date.now(),
+          time: new Date().toLocaleDateString(),
+        },
+      ]);
     });
-
     // WebRTC: Receiving offer
     socket.on("offer", async (offer) => {
       peer = new RTCPeerConnection();
@@ -83,18 +94,21 @@ export default function ChatRoomPage() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleSendMessage = () => {
-    if (!message.trim()) return;
+  // const handleSendMessage = () => {
+  //   if (!message.trim()) return;
+  //   console.log(message);
+  //   socket.emit("send-message", { roomId, message, name });
+  //   const msgObj = {
+  //     sender: name,
+  //     text: message,
+  //     id: Date.now(),
+  //     time: new Date().toLocaleTimeString(), // generate time here
+  //   };
+  //   console.log(msgObj.text);
+  //   setMessages((prev) => [...prev, msgObj]);
 
-    socket.emit("send-message", { roomId, message, name });
-
-    setMessages((prev) => [
-      ...prev,
-      { sender: name, text: message, id: Date.now() },
-    ]);
-
-    setMessage("");
-  };
+  //   setMessage("");
+  // };
 
   const startCall = async () => {
     peer = new RTCPeerConnection();
@@ -125,9 +139,9 @@ export default function ChatRoomPage() {
 
   return (
     <div className="h-screen flex flex-col bg-[#020517] overflow-hidden">
-      <ChatHeader listener={listener} />
+      <ChatHeader listener={headerProps} />
 
-      {/* Video call area */}
+      {/* Video call area
       <div className="flex gap-4 p-2 justify-center">
         <video
           id="localVideo"
@@ -142,15 +156,12 @@ export default function ChatRoomPage() {
           playsInline
           className="w-48 h-32 rounded-md border border-gray-700"
         />
-      </div>
+      </div> */}
 
       {/* Chat messages */}
       <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
         {messages.map((msg) => (
-          <MessageBubble
-            key={msg.id}
-            message={{ text: msg.text, sender: msg.sender }}
-          />
+          <MessageBubble key={msg.id} message={msg} currentUser={name} />
         ))}
         <div ref={bottomRef} />
       </div>
@@ -158,10 +169,25 @@ export default function ChatRoomPage() {
       {/* Input */}
       <div className="px-4 py-3">
         <ChatInput
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onSend={handleSendMessage}
+          onSend={(text) => {
+            if (!text.trim()) return;
+
+            const msgObj = {
+              sender: name,
+              text,
+              id: Date.now(),
+              time: new Date().toLocaleTimeString(),
+            };
+
+            // Emit to backend
+            socket.emit("send-message", { roomId, message: text, name });
+
+            // Update local messages
+            setMessages((prev) => [...prev, msgObj]);
+            console.log(messages);
+          }}
         />
+
         <button
           className="mt-2 px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700"
           onClick={startCall}

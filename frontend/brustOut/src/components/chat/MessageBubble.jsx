@@ -1,8 +1,7 @@
 import { listener, user } from "../../data/dummyChat";
 
-export default function MessageBubble({ message }) {
-  const isUser = message.sender === "user";
-
+export default function MessageBubble({ message, currentUser }) {
+  const isUser = message.sender === currentUser;
   return (
     <div
       className={`flex items-end gap-2 ${
