@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
-const API = import.meta.env.VITE_SERVER_DOMAIN;
+const API = import.meta.env.VITE_API_URL;
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState({
