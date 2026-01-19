@@ -211,4 +211,58 @@ app.post("/listener/signup", async (req, res) => {
 });
 
 
+// Listener Login....
+app.post("/listener/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Validate input
+    if (!email || !password) {
+      return res.status(403).json({ error: "All fields are required" });
+    }
+
+    // Find listener
+    const listener = await Listener.findOne({ email });
+
+    if (!listener) {
+      return res.status(403).json({ error: "Invalid email" });
+    }
+
+    // Check approval status
+    if (listener.status !== "approved") {
+      return res.status(403).json({
+        error: "Your account is not approved yet"
+      });
+    }
+
+    // Compare password
+    bcrypt.compare(password, listener.password, (err, result) => {
+      if (err) {
+        return res.status(500).json({
+          error: "Error occurred while login. Please try again"
+        });
+      }
+
+      if (!result) {
+        return res.status(403).json({ error: "Incorrect password" });
+      }
+
+      // Success response
+      return res.status(200).json({
+        message: "Login successful",
+        listener: {
+          id: listener._id,
+          fullname: listener.fullname,
+          email: listener.email,
+          role: listener.role
+        }
+      });
+    });
+
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+});
+
+
 export default app;
